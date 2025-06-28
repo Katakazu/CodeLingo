@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
-    id("com.google.devtools.ksp") version "1.9.10-1.0.13"
+//    id("org.jetbrains.kotlin.plugin.compose")
+    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
 }
 
 android {
@@ -32,7 +32,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "2.0.0" // Cocok untuk Kotlin 1.9.10
+        kotlinCompilerExtensionVersion = "1.5.10" // Cocok untuk Kotlin 1.9.22
     }
 
     compileOptions {
@@ -46,20 +46,27 @@ android {
 }
 
 dependencies {
+    implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
 
     // Jetpack Compose
-    implementation("androidx.compose.ui:ui:1.6.1")
-    implementation("androidx.compose.material:material:1.6.1")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.1")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.6.1")
+    val composeBom = platform("androidx.compose:compose-bom:2024.02.02")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
 
     // Room + KSP (kalau kamu pakai)
+//    val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
 
     // Optional (icons, etc.)
-    implementation("androidx.compose.material:material-icons-extended:1.6.1")
+    implementation("androidx.compose.material:material-icons-extended")
 }
