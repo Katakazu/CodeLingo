@@ -1,18 +1,18 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-//    id("org.jetbrains.kotlin.plugin.compose")
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+
 }
 
 android {
     namespace = "com.example.codelingo"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.codelingo"
-        minSdk = 21
-        targetSdk = 34
+        minSdk = 31
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }
@@ -30,10 +30,12 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        dataBinding = true
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10" // Cocok untuk Kotlin 1.9.22
+        kotlinCompilerExtensionVersion = "1.5.8" // Cocok untuk Kotlin 1.9.10
+
     }
 
     compileOptions {
@@ -47,31 +49,26 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-ktx:1.8.2")
-    implementation("androidx.activity:activity-compose:1.8.2")
-//    implementation(libs.androidx.appcompat)
-//    implementation(libs.androidx.activity)
-//    implementation(libs.androidx.constraintlayout)
-
-    // Jetpack Compose
-    val composeBom = platform("androidx.compose:compose-bom:2024.02.02")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-
-    // Room + KSP (kalau kamu pakai)
-//    val room_version = "2.6.1"
-    implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
     implementation("androidx.room:room-ktx:2.6.1")
 
+    // Jetpack Compose
+    implementation(libs.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.viewpager2)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.material)
+    implementation(libs.androidx.material3.android)
+    debugImplementation(libs.ui.tooling)
+
+    // Room + KSP (kalau kamu pakai)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+
     // Optional (icons, etc.)
-    implementation("androidx.compose.material:material-icons-extended")
+    implementation(libs.androidx.material.icons.extended)
 }

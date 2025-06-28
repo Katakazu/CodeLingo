@@ -26,6 +26,7 @@
         <!-- Blue -->
         <color name="blue">#2196F3</color>
         <color name="blue_light">#E3F2FD</color>
+        <color name="dark_blue">#2B4C7E</color>
 
         <!-- Background -->
         <color name="background_light">#F8F9FA</color>

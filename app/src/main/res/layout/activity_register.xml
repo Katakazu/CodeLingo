@@ -1,241 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/background_light">
+    android:background="@color/white"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+        android:padding="24dp">
 
-        <!-- Logo/Title Section -->
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Daftar"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="@color/gray_dark"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="8dp" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="32dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Membuat Akun"
-            android:textSize="18sp"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="40dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/daftar"
+                android:textSize="28sp"
+                android:textColor="@color/dark_blue"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginBottom="1dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Akun Baru"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
 
         <!-- Email Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/background_light"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:startIconDrawable="@drawable/ic_email"
-            app:startIconTint="@color/background_light"
-            app:hintEnabled="false">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/email"
+            android:textColorHint="@color/black"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/orange"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:textSize="16sp"
-                android:textColor="@color/text_primary"
-                android:textColorHint="@color/gray_dark"
-                android:padding="16dp" />
-
+                android:drawableStart="@drawable/ic_mail"
+                android:drawableTint="@color/black"
+                android:drawablePadding="12dp"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Username Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/cardview_dark_background"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:startIconDrawable="@drawable/ic_person"
-            app:startIconTint="@color/background_light"
-            app:hintEnabled="false">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/username"
+            android:textColorHint="@color/black"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            android:inputType="text"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/orange"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="12dp"
                 android:inputType="text"
-                android:textSize="16sp"
-                android:textColor="@color/text_primary"
-                android:textColorHint="@color/background_light"
-                android:padding="16dp" />
-
+                android:padding="16dp"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Password Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/cardview_dark_background"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:startIconDrawable="@drawable/ic_lock"
-            app:startIconTint="@color/cardview_dark_background"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/password"
+            android:textColorHint="@color/black"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            android:inputType="text"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/orange"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
             app:endIconMode="password_toggle"
-            app:hintEnabled="false">
+            app:endIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="12dp"
                 android:inputType="textPassword"
-                android:textSize="16sp"
-                android:textColor="@color/text_primary"
-                android:textColorHint="@color/background_light"
-                android:padding="16dp" />
-
+                android:padding="16dp"
+                android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Confirm Password Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/cardview_light_background"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:startIconDrawable="@drawable/ic_lock"
-            app:startIconTint="@color/gray_light"
+            android:layout_marginBottom="24dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="@string/confirm_password"
+            android:textColorHint="@color/black"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/orange"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="2dp"
             app:endIconMode="password_toggle"
-            app:hintEnabled="false">
+            app:endIconTint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etConfirmPassword"
+                android:id="@+id/etConfirm_Password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirm Password"
                 android:inputType="textPassword"
-                android:textSize="16sp"
-                android:textColor="@color/text_primary"
-                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_lock"
+                android:drawablePadding="12dp"
                 android:padding="16dp" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Register Button -->
-
-        <!-- Divider Text -->
-        <Button
-            android:id="@+id/btnRegister"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMasuk"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginBottom="24dp"
-            android:background="@color/background_light"
-            android:elevation="2dp"
-            android:text="Daftar"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_orange_rounded"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="@string/daftar"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Atau daftar dengan"
-            android:textSize="14sp"
-            android:textColor="@color/text_secondary"
-            android:layout_marginBottom="16dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gray_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="atau daftar dengan"
+                android:textColor="@color/gray_dark"
+                android:textSize="14sp"
+                android:layout_marginHorizontal="16dp"
+                android:fontFamily="@font/poppins_regular"
+                tools:ignore="HardcodedText" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gray_dark" />
+
+        </LinearLayout>
 
         <!-- Social Login Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="32dp">
 
-            <!-- Google Button -->
-            <Button
-                android:id="@+id/btnGoogle"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:text="Google"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
-                android:background="@color/background_light"
-                android:drawableLeft="@drawable/ic_google"
-                android:drawablePadding="8dp"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginEnd="8dp" />
+                android:background="@drawable/button_white_rounded_border"
+                android:layout_marginEnd="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
 
-            <!-- Facebook Button -->
-            <Button
-                android:id="@+id/btnFacebook"
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_google"
+                    android:contentDescription="@string/google_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/google"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:text="Facebook"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
-                android:background="@color/background_light"
-                android:drawableLeft="@drawable/ic_facebook"
-                android:drawablePadding="8dp"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginStart="8dp" />
+                android:background="@drawable/button_white_rounded_border"
+                android:layout_marginEnd="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_facebook"
+                    android:contentDescription="@string/facebook_icon"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/facebook"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="18sp"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Login Link -->
+        <!-- Register Link -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tvSudahPunya"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sudah Punya Akun? "
+                android:text="@string/sudah_punya_akun"
+                android:textColor="@color/black"
                 android:textSize="14sp"
-                android:textColor="@color/text_secondary" />
-
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_medium" />
             <TextView
-                android:id="@+id/tvLogin"
+                android:id="@+id/masuk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Masuk!"
-                android:textSize="14sp"
+                android:layout_marginStart="5dp"
+                android:text="@string/masuk"
                 android:textColor="@color/orange"
-                android:textStyle="bold"
-                android:clickable="true"
-                android:focusable="true" />
-
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_medium" />
         </LinearLayout>
-
     </LinearLayout>
-
 </ScrollView>
