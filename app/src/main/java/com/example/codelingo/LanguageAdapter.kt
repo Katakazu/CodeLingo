@@ -37,15 +37,16 @@ class LanguageAdapter(
                 tvLanguageName.text = language.name
 
                 // Set icon based on language name
-                val iconRes = when (language.name.lowercase()) {
+                val iconRes =
+                    when (language.name.lowercase()) {
                     "java" -> R.drawable.ic_java
-                    "python" -> R.drawable.ic_python
-                    "c" -> R.drawable.ic_c
-                    "css" -> R.drawable.ic_css
-                    "kotlin" -> R.drawable.ic_kotlin
-                    "php" -> R.drawable.ic_php
-                    else -> R.drawable.ic_logo
-                }
+//                    "python" -> R.drawable.ic_python
+//                    "c" -> R.drawable.ic_c
+//                    "css" -> R.drawable.ic_css
+//                    "kotlin" -> R.drawable.ic_kotlin
+//                    "php" -> R.drawable.ic_php
+                      else -> R.drawable.ic_coding
+                    }
                 ivLanguageIcon.setImageResource(iconRes)
 
                 // Update selection state
