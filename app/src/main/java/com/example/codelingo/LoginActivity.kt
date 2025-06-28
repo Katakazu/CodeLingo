@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.codelingo.R
 import com.example.codelingo.databinding.ActivityLoginBinding
 import com.example.codelingo.ui.language.LanguageSelectionActivity
-import com.example.codelingo.viewmodel.AuthViewModel
 
 class LoginActivity : AppCompatActivity() {
 

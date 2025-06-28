@@ -7,7 +7,6 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codelingo.R
 import com.example.codelingo.ui.auth.LoginActivity
-import com.example.codelingo.data.preferences.UserPreferences
 
 class SplashActivity : AppCompatActivity() {
 

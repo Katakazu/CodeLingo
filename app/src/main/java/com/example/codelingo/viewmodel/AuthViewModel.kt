@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.codelingo.data.database.CodeLingoDatabase
-import com.example.codelingo.data.model.User
-import com.example.codelingo.data.preferences.UserPreferences
+import com.example.codelingo.data.model.AppUser
+import com.example.codelingo.data.preferences.UserPreferences  // Tambahkan ini
 import kotlinx.coroutines.launch
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
@@ -23,7 +23,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     val registerResult: LiveData<AuthResult> = _registerResult
 
     sealed class AuthResult {
-        data class Success(val user: User, val isFirstTime: Boolean = false) : AuthResult()
+        data class Success(val user: AppUser, val isFirstTime: Boolean = false) : AuthResult()
         data class Error(val message: String) : AuthResult()
         data class Loading(val isLoading: Boolean) : AuthResult()
     }
@@ -65,7 +65,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 // Create new user
-                val newUser = User(
+                val newUser = AppUser(
                     username = username,
                     email = email,
                     password = password,
@@ -93,8 +93,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getCurrentUser(): LiveData<User?> {
-        val currentUser = MutableLiveData<User?>()
+    fun getCurrentUser(): LiveData<AppUser?> {
+        val currentUser = MutableLiveData<AppUser?>()
 
         viewModelScope.launch {
             try {
