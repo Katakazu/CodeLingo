@@ -44,7 +44,7 @@ class LanguageAdapter(
                     "css" -> R.drawable.ic_css
                     "kotlin" -> R.drawable.ic_kotlin
                     "php" -> R.drawable.ic_php
-                    else -> R.drawable.ic_code_default
+                    else -> R.drawable.ic_logo
                 }
                 ivLanguageIcon.setImageResource(iconRes)
 
