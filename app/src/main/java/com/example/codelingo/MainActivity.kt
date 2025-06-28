@@ -1,4 +1,4 @@
-package com.example.codelingo.ui.main
+package com.example.codelingo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
