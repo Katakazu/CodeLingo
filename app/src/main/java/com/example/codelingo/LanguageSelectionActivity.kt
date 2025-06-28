@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.codelingo.databinding.ActivityLanguageSelectionBinding
 import com.example.codelingo.data.model.ProgrammingLanguage
+import com.example.codelingo.ui.adapter.LanguageAdapter
+import com.example.codelingo.ui.main.MainActivity
 
 class LanguageSelectionActivity : AppCompatActivity() {
 

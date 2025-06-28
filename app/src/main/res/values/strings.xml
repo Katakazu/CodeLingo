@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">CodeLingo</string>
+    <string name="codelingo">CodeLingo</string>
+    <string name="masuk">Masuk</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="lupa_password">Lupa Password?</string>
+    <string name="atau_masuk_dengan">Atau masuk dengan</string>
+    <string name="google_icon">Ikon Google untuk login</string>
+    <string name="facebook_icon">Ikon Facebook untuk login</string>
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun?</string>
+    <string name="daftar">Daftar</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="lewati">Lewati</string>
+    <string name="lanjut">Lanjut</string>
 </resources>
