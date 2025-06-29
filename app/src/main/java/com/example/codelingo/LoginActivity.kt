@@ -26,11 +26,9 @@ class LoginActivity : AppCompatActivity() {
                 // Sementara hanya cek input, belum pakai autentikasi
                 if (username == "admin" && password == "admin") {
                     Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show()
-                    /*
-                    val intent = Intent(this, DashboardActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
-                    finish()*/
-
+                    finish()
                 } else {
                     Toast.makeText(this, "Username atau password salah", Toast.LENGTH_SHORT).show()
                 }

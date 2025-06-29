@@ -1,10 +1,9 @@
-package com.example.yourapp
+package com.example.codelingo
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.codelingo.MainActivity
 import com.example.codelingo.R
 import com.google.android.material.card.MaterialCardView
 
@@ -23,7 +22,7 @@ class LanguageSelectionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.item_language)
+        setContentView(R.layout.activity_language_selection)
 
         initViews()
         setupClickListeners()
@@ -85,7 +84,7 @@ class LanguageSelectionActivity : AppCompatActivity() {
     private fun proceedToNextScreen() {
         selectedLanguage?.let { language ->
             // Pass selected language to next activity
-            val intent = Intent(this, MainActivity::class.java) // Change to your target activity
+            val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("SELECTED_LANGUAGE", language)
             startActivity(intent)
             finish()
