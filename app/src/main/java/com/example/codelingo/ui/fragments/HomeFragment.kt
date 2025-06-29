@@ -43,11 +43,12 @@ class HomeFragment : Fragment() {
         val textDays = view.findViewById<TextView>(R.id.textDays)
         val textLessonProgress = view.findViewById<TextView>(R.id.textLessonProgress)
         val level = prefs.getUserLevel()
-        val xp = prefs.getUserXp()
-        val targetXp = 200
+        val totalXp = prefs.getTotalXp()
+        // Hitung target total XP untuk naik ke level berikutnya
+        val targetTotalXp = 200 * (level + 1) // 200 XP per level
         val lesson = prefs.getCurrentLesson().coerceIn(1, 10)
         textLevel.text = level.toString()
-        textXp.text = "$xp/$targetXp"
+        textXp.text = "$totalXp/$targetTotalXp"
         textDays.text = prefs.getUserDays().toString()
         textLessonProgress.text = "Lesson $lesson dari 10"
     }

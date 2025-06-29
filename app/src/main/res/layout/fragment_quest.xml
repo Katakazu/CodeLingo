@@ -71,6 +71,7 @@
                     android:layout_marginBottom="12dp">
 
                     <TextView
+                        android:id="@+id/textDailyProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3/5 Quest Selesai"
@@ -87,6 +88,7 @@
                         android:layout_marginEnd="16dp" />
 
                     <TextView
+                        android:id="@+id/textDailyPercent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="60%"
@@ -98,6 +100,7 @@
                 </LinearLayout>
 
                 <ProgressBar
+                    android:id="@+id/progressBarDaily"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
                     android:progress="60"
@@ -120,153 +123,12 @@
             android:fontFamily="@font/poppins_bold"
             android:layout_marginBottom="16dp" />
 
-        <!-- Quest 1 -->
-        <com.google.android.material.card.MaterialCardView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewQuests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_java"
-                    android:layout_marginEnd="16dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Selesaikan 3 Lesson Java"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_medium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Progress: 2/3"
-                        android:textSize="14sp"
-                        android:textColor="@color/text_secondary"
-                        android:fontFamily="@font/poppins_regular" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="end">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+50 XP"
-                        android:textSize="14sp"
-                        android:textColor="@color/orange_primary"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_medium" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_trophy"
-                        android:tint="@color/gray_medium" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Quest 2 -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_quest"
-                    android:layout_marginEnd="16dp" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mainkan 5 Game Coding"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_medium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Progress: 5/5"
-                        android:textSize="14sp"
-                        android:textColor="@color/green"
-                        android:fontFamily="@font/poppins_medium" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="end">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="+75 XP"
-                        android:textSize="14sp"
-                        android:textColor="@color/orange_primary"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_medium" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_trophy"
-                        android:tint="@color/green" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
+            android:overScrollMode="never"
+            android:layout_marginBottom="24dp" />
 
     </LinearLayout>
 
