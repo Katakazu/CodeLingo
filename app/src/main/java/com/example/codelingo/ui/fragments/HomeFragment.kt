@@ -28,15 +28,25 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Tampilkan statistik user
-        showUserStats(view)
-        // Tampilkan daftar lesson
-        showLessonList(view)
-        // Setup click listeners
-        setupClickListeners(view)
+        val totalLesson = 3 // Ganti sesuai jumlah lesson yang tersedia
+        showUserStats(view, totalLesson)
+        showLessonList(view, totalLesson)
+        setupClickListeners(view, totalLesson)
+
+        val prefs = UserPreferences(requireContext())
+        val continueLearningButton = view.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.continue_learning_button)
+        val currentLesson = prefs.getCurrentLesson().coerceIn(1, totalLesson)
+        continueLearningButton.text = if (currentLesson <= 1) "Mulai" else "Lanjut"
+        continueLearningButton.setOnClickListener {
+            val learningFragment = LearningFragment.newInstance(currentLesson - 1)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, learningFragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
     
-    private fun showUserStats(view: View) {
+    private fun showUserStats(view: View, totalLesson: Int) {
         val prefs = UserPreferences(requireContext())
         val textLevel = view.findViewById<TextView>(R.id.textLevel)
         val textXp = view.findViewById<TextView>(R.id.textXp)
@@ -44,21 +54,19 @@ class HomeFragment : Fragment() {
         val textLessonProgress = view.findViewById<TextView>(R.id.textLessonProgress)
         val level = prefs.getUserLevel()
         val totalXp = prefs.getTotalXp()
-        // Hitung target total XP untuk naik ke level berikutnya
-        val targetTotalXp = 200 * (level + 1) // 200 XP per level
-        val lesson = prefs.getCurrentLesson().coerceIn(1, 10)
+        val targetTotalXp = 200 * (level + 1)
+        val lesson = prefs.getCurrentLesson().coerceIn(1, totalLesson)
         textLevel.text = level.toString()
         textXp.text = "$totalXp/$targetTotalXp"
         textDays.text = prefs.getUserDays().toString()
-        textLessonProgress.text = "Lesson $lesson dari 10"
+        textLessonProgress.text = "Lesson $lesson dari $totalLesson"
     }
 
-    private fun showLessonList(view: View) {
+    private fun showLessonList(view: View, totalLesson: Int) {
         val prefs = UserPreferences(requireContext())
         val lessonListContainer = view.findViewById<LinearLayout>(R.id.lessonListContainer)
         lessonListContainer.removeAllViews()
-        val unlocked = prefs.getCurrentLesson().coerceIn(1, 10)
-        val totalLesson = 3
+        val unlocked = prefs.getCurrentLesson().coerceIn(1, totalLesson)
         for (i in 1..totalLesson) {
             val btn = TextView(requireContext())
             btn.text = "Lesson $i"
@@ -66,8 +74,8 @@ class HomeFragment : Fragment() {
             btn.setTypeface(null, Typeface.BOLD)
             btn.setPadding(32, 24, 32, 24)
             btn.gravity = Gravity.CENTER_VERTICAL
-            btn.background = ContextCompat.getDrawable(requireContext(), R.drawable.edit_text_background)
-            btn.setTextColor(ContextCompat.getColor(requireContext(), if (i <= unlocked) R.color.text_primary else R.color.text_secondary))
+            btn.background = ContextCompat.getDrawable(requireContext(), if (i <= unlocked) R.drawable.lesson_enabled_gradient else R.drawable.lesson_disabled_gradient)
+            btn.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             btn.isEnabled = i <= unlocked
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             params.setMargins(0, 0, 0, 16)
@@ -85,36 +93,20 @@ class HomeFragment : Fragment() {
         }
     }
     
-    private fun setupClickListeners(view: View) {
-        // Daily Quest button
+    private fun setupClickListeners(view: View, totalLesson: Int) {
         val dailyQuestCard = view.findViewById<MaterialCardView>(R.id.daily_quest_card)
         dailyQuestCard?.setOnClickListener {
-            // Navigate to QuestFragment
             val questFragment = QuestFragment()
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, questFragment)
                 .addToBackStack(null)
                 .commit()
         }
-        
-        // Leaderboard button
         val leaderboardCard = view.findViewById<MaterialCardView>(R.id.leaderboard_card)
         leaderboardCard?.setOnClickListener {
-            // Navigate to LeaderboardFragment
             val leaderboardFragment = LeaderboardFragment()
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, leaderboardFragment)
-                .addToBackStack(null)
-                .commit()
-        }
-        
-        // Continue Learning button
-        val continueLearningButton = view.findViewById<View>(R.id.continue_learning_button)
-        continueLearningButton?.setOnClickListener {
-            // Navigasi ke LearningFragment
-            val learningFragment = LearningFragment()
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, learningFragment)
                 .addToBackStack(null)
                 .commit()
         }

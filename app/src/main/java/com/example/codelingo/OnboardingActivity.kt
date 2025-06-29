@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.codelingo.databinding.ActivityOnboardingBinding
 import com.example.codelingo.data.model.OnboardingItem
 import androidx.viewpager2.widget.ViewPager2
+import com.example.codelingo.data.preferences.UserPreferences
 
 class OnboardingActivity: AppCompatActivity() {
     private lateinit var binding: ActivityOnboardingBinding
@@ -22,12 +23,14 @@ class OnboardingActivity: AppCompatActivity() {
             if (binding.viewPager.currentItem + 1 < onboardingAdapter.itemCount) {
                 binding.viewPager.currentItem += 1
             } else {
+                UserPreferences(this).setFirstTime(false)
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
         }
 
         binding.tvSkip.setOnClickListener {
+            UserPreferences(this).setFirstTime(false)
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }

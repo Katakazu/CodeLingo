@@ -152,11 +152,17 @@ class QuestAdapter(
             if (quest.claimed) {
                 btnClaim.isEnabled = false
                 btnClaim.text = "Selesai"
+                btnClaim.setBackgroundResource(R.drawable.button_gray_rounded)
                 card.alpha = 0.5f
                 title.paintFlags = title.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             } else {
                 btnClaim.isEnabled = quest.progress >= quest.target
                 btnClaim.text = "Klaim"
+                if (quest.progress >= quest.target) {
+                    btnClaim.setBackgroundResource(R.drawable.button_orange_rounded)
+                } else {
+                    btnClaim.setBackgroundResource(R.drawable.button_gray_rounded)
+                }
                 card.alpha = 1f
                 title.paintFlags = title.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
                 btnClaim.setOnClickListener {

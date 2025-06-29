@@ -323,7 +323,7 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:thumbTint="@color/orange_primary"
-                    android:trackTint="@color/orange_light" />
+                    android:trackTint="@color/switch_track_orange" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

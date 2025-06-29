@@ -106,17 +106,17 @@ class ProfileFragment : Fragment() {
         val totalXp = userPreferences.getTotalXp()
         
         if (level >= 1) {
-            addBadge(badgeRow, R.drawable.ic_trophy, "Level 1")
+            addBadge(badgeRow, R.drawable.ic_trophy)
         }
         if (totalXp >= 500) {
-            addBadge(badgeRow, R.drawable.ic_fire, "500 XP")
+            addBadge(badgeRow, R.drawable.ic_fire)
         }
         if (userPreferences.getUserDays() >= 7) {
-            addBadge(badgeRow, R.drawable.ic_calendar, "7 Days")
+            addBadge(badgeRow, R.drawable.ic_calendar)
         }
     }
 
-    private fun addBadge(container: LinearLayout, iconRes: Int, title: String) {
+    private fun addBadge(container: LinearLayout, iconRes: Int) {
         val badge = ImageView(requireContext())
         badge.setImageResource(iconRes)
         badge.layoutParams = LinearLayout.LayoutParams(48, 48).apply {
@@ -177,11 +177,19 @@ class ProfileFragment : Fragment() {
             .setTitle("Pilih Bahasa Pemrograman")
             .setSingleChoiceItems(languages, currentIndex) { dialog, which ->
                 val selectedLanguage = languages[which]
-                userPreferences.setSelectedLanguage(selectedLanguage)
-                view?.findViewById<TextView>(R.id.profileLanguage)?.text = selectedLanguage
-                view?.findViewById<TextView>(R.id.profileSubtext)?.text = "Level ${userPreferences.getUserLevel()} • $selectedLanguage"
-                updateLanguageIcon(view?.findViewById(R.id.profileLanguageIcon) ?: return@setSingleChoiceItems, selectedLanguage)
-                dialog.dismiss()
+                if (selectedLanguage == "Java") {
+                    userPreferences.setSelectedLanguage(selectedLanguage)
+                    view?.findViewById<TextView>(R.id.profileLanguage)?.text = selectedLanguage
+                    view?.findViewById<TextView>(R.id.profileSubtext)?.text = "Level ${userPreferences.getUserLevel()} • $selectedLanguage"
+                    updateLanguageIcon(view?.findViewById(R.id.profileLanguageIcon) ?: return@setSingleChoiceItems, selectedLanguage)
+                    dialog.dismiss()
+                } else {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Info")
+                        .setMessage("Bahasa $selectedLanguage masih dalam pengembangan.")
+                        .setPositiveButton("OK", null)
+                        .show()
+                }
             }
             .setNegativeButton("Batal", null)
             .show()

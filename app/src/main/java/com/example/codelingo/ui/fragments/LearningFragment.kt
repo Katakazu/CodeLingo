@@ -96,6 +96,9 @@ class LearningFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val actionButton = view.findViewById<Button>(R.id.actionButton)
+        actionButton.setBackgroundResource(R.drawable.button_orange_rounded)
+        actionButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         showQuestion(view)
     }
 
@@ -122,6 +125,7 @@ class LearningFragment : Fragment() {
         answersContainer.removeAllViews()
         feedbackContainer.visibility = View.GONE
         actionButton.text = "JAWAB"
+        actionButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         selectedOption = -1
 
         // Add answer options
@@ -186,6 +190,7 @@ class LearningFragment : Fragment() {
                 answersContainer.getChildAt(i).isEnabled = false
             }
             actionButton.text = if (currentQuestion < questions.size - 1) "LANJUTKAN" else "SELESAI"
+            actionButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             actionButton.setOnClickListener {
                 if (currentQuestion < questions.size - 1) {
                     currentQuestion++
@@ -231,12 +236,11 @@ class LearningFragment : Fragment() {
             prefs.setLastLearnDate(today)
         }
         
-        // Progress lesson hanya bertambah jika belum mencapai lesson ke-10
+        // Progress lesson hanya bertambah jika semua soal benar (lives tidak berkurang)
         val currentLesson = prefs.getCurrentLesson()
-        if (currentLesson < 10 && currentLesson == lessonIndex + 1) {
-            // Hanya tambah progress jika user menyelesaikan lesson yang baru (bukan mengulang)
+        if (currentLesson < lessons.size && currentLesson == lessonIndex + 1 && lives == 3) {
             prefs.setCurrentLesson(currentLesson + 1)
-            prefs.addLessonCompletedToday() // Tambah counter lesson selesai hari ini
+            prefs.addLessonCompletedToday()
         }
     }
 }

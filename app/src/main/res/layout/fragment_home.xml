@@ -112,13 +112,14 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_school"
+                            android:tint="@color/orange_primary"
                             android:contentDescription="Level" />
                         <TextView
                             android:id="@+id/textLevel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:textColor="@color/text_primary"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_bold"
@@ -145,6 +146,7 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_fire"
+                            android:tint="@color/orange_primary"
                             android:contentDescription="XP" />
                         <TextView
                             android:id="@+id/textXp"
@@ -153,7 +155,7 @@
                             android:fontFamily="@font/poppins_bold"
                             android:text="250/200"
                             android:textColor="@color/text_primary"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -176,13 +178,14 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_calendar"
+                            android:tint="@color/orange_primary"
                             android:contentDescription="Hari" />
                         <TextView
                             android:id="@+id/textDays"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="7"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:textColor="@color/text_primary"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_bold" />

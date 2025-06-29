@@ -8,6 +8,7 @@ import android.view.animation.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.codelingo.data.preferences.UserPreferences
 
 class SplashActivity : AppCompatActivity() {
 
@@ -24,7 +25,18 @@ class SplashActivity : AppCompatActivity() {
         animateSplash()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, OnboardingActivity::class.java))
+            val prefs = UserPreferences(this)
+            when {
+                prefs.isFirstTime() -> {
+                    startActivity(Intent(this, OnboardingActivity::class.java))
+                }
+                prefs.isUserLoggedIn() -> {
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+                else -> {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                }
+            }
             finish()
         }, 2500)
     }

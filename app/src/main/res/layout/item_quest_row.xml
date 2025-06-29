@@ -52,7 +52,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginEnd="16dp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnClaim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -279,19 +279,17 @@
     </GridLayout>
 
     <!-- Continue Button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnContinue"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:text="LANJUTKAN"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:background="@drawable/button_orange_rounded"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        android:elevation="2dp"
-        android:enabled="false"
-        android:alpha="0.6" />
+        android:fontFamily="@font/poppins_bold"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:layout_marginTop="24dp" />
 
 </LinearLayout> 

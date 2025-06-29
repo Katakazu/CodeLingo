@@ -24,6 +24,7 @@ class UserPreferences(context: Context) {
         private val KEY_USERNAME = "username"
         private val KEY_SELECTED_LANGUAGE = "selected_language"
         private val KEY_NOTIFICATION_ENABLED = "notification_enabled"
+        private val KEY_FIRST_TIME = "first_time"
     }
 
     init {
@@ -202,4 +203,7 @@ class UserPreferences(context: Context) {
     fun setNotificationEnabled(enabled: Boolean) {
         sharedPreferences.edit().putBoolean(KEY_NOTIFICATION_ENABLED, enabled).apply()
     }
+
+    fun isFirstTime(): Boolean = sharedPreferences.getBoolean(KEY_FIRST_TIME, true)
+    fun setFirstTime(isFirst: Boolean) = sharedPreferences.edit().putBoolean(KEY_FIRST_TIME, isFirst).apply()
 }

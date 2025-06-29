@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.codelingo.databinding.ActivityLoginBinding
+import com.example.codelingo.data.preferences.UserPreferences
 
 class LoginActivity : AppCompatActivity() {
 
@@ -12,6 +13,12 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val prefs = UserPreferences(this)
+        if (prefs.isUserLoggedIn()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -26,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
                 // Sementara hanya cek input, belum pakai autentikasi
                 if (username == "admin" && password == "admin") {
                     Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show()
+                    prefs.setUserLoggedIn(true)
                     val intent = Intent(this, LanguageSelectionActivity::class.java)
                     startActivity(intent)
                     finish()
