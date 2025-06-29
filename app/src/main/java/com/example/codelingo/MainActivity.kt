@@ -3,7 +3,6 @@ package com.example.codelingo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.codelingo.R
 import com.example.codelingo.databinding.ActivityMainBinding
 import com.example.codelingo.ui.fragments.HomeFragment
 import com.example.codelingo.ui.fragments.LeaderboardFragment
