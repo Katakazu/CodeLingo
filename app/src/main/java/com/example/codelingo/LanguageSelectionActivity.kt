@@ -1,4 +1,4 @@
-package com.example.codelingo.ui.language
+package com.example.codelingo
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,13 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.codelingo.databinding.ActivityLanguageSelectionBinding
 import com.example.codelingo.data.model.ProgrammingLanguage
-import com.example.codelingo.ui.adapter.LanguageAdapter
-import com.example.codelingo.ui.main.MainActivity
+import com.example.codelingo.ui.adapter.LanguageSelectionAdapter
 
 class LanguageSelectionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLanguageSelectionBinding
-    private lateinit var languageAdapter: LanguageAdapter
+    private lateinit var languageSelectionAdapter: LanguageSelectionAdapter
     private val programmingLanguages = mutableListOf<ProgrammingLanguage>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,13 +39,13 @@ class LanguageSelectionActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        languageAdapter = LanguageAdapter(programmingLanguages) { language ->
+        languageSelectionAdapter = LanguageSelectionAdapter(programmingLanguages) { language ->
             handleLanguageSelection(language)
         }
 
         binding.rvLanguages.apply {
             layoutManager = GridLayoutManager(this@LanguageSelectionActivity, 2)
-            adapter = languageAdapter
+            adapter = languageSelectionAdapter
         }
     }
 
@@ -66,7 +65,7 @@ class LanguageSelectionActivity : AppCompatActivity() {
         val index = programmingLanguages.indexOf(language)
         if (index != -1) {
             programmingLanguages[index].isSelected = !programmingLanguages[index].isSelected
-            languageAdapter.notifyItemChanged(index)
+            languageSelectionAdapter.notifyItemChanged(index)
 
             // Enable/disable continue button based on selection
             updateContinueButton()
@@ -82,7 +81,7 @@ class LanguageSelectionActivity : AppCompatActivity() {
     private fun saveSelectedLanguagesAndProceed(selectedLanguages: List<ProgrammingLanguage>) {
         // Save selected languages to preferences or database
         // For now, just proceed to main activity
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, DashboardActivity::class.java)
         intent.putExtra("selected_languages", ArrayList(selectedLanguages.map { it.name }))
         startActivity(intent)
         finish()

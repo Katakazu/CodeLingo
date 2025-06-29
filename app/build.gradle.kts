@@ -34,7 +34,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8" // Cocok untuk Kotlin 1.9.10
+        kotlinCompilerExtensionVersion = "1.5.8"     // Cocok untuk Kotlin 1.9.10
 
     }
 

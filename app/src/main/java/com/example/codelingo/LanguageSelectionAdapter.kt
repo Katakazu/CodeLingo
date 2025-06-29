@@ -8,10 +8,10 @@ import com.example.codelingo.R
 import com.example.codelingo.databinding.ItemLanguageBinding
 import com.example.codelingo.data.model.ProgrammingLanguage
 
-class LanguageAdapter(
+class LanguageSelectionAdapter(
     private val languages: List<ProgrammingLanguage>,
     private val onLanguageClick: (ProgrammingLanguage) -> Unit
-) : RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
+) : RecyclerView.Adapter<LanguageSelectionAdapter.LanguageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
         val binding = ItemLanguageBinding.inflate(
@@ -40,11 +40,11 @@ class LanguageAdapter(
                 val iconRes =
                     when (language.name.lowercase()) {
                     "java" -> R.drawable.ic_java
-//                    "python" -> R.drawable.ic_python
-//                    "c" -> R.drawable.ic_c
-//                    "css" -> R.drawable.ic_css
-//                    "kotlin" -> R.drawable.ic_kotlin
-//                    "php" -> R.drawable.ic_php
+                    "python" -> R.drawable.ic_python
+                    "c" -> R.drawable.ic_c
+                    "css" -> R.drawable.ic_css
+                    "kotlin" -> R.drawable.ic_kotlin
+                    "php" -> R.drawable.ic_php
                       else -> R.drawable.ic_coding
                     }
                 ivLanguageIcon.setImageResource(iconRes)
