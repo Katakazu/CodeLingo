@@ -12,56 +12,78 @@
         android:padding="16dp">
 
         <!-- Profile Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <FrameLayout
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:id="@+id/profileAvatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_person"
+                    android:background="@drawable/circle_white"
+                    android:scaleType="centerInside"
+                    android:padding="16dp"
+                    android:elevation="4dp" />
+
+                <ImageView
+                    android:id="@+id/btnEditAvatar"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_edit"
+                    android:background="@drawable/circle_orange"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="4dp"
+                    android:padding="6dp"
+                    android:elevation="6dp" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/profileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Nama User"
+                android:textColor="@color/text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/profileSubtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Level 1 • -"
+                android:textColor="@color/text_secondary"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Badge Row -->
+            <LinearLayout
+                android:id="@+id/badgeRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
 
         <!-- Stats Cards -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:background="@color/orange_primary"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="32dp">
-
-            <LinearLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/white"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_person"
-                    android:tint="@color/orange_primary" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Admin User"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Level 5 • Java Developer"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="center"
             android:layout_marginBottom="24dp">
 
             <!-- Total XP -->
@@ -79,13 +101,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="16dp">
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_trophy"
+                        android:tint="@color/orange_primary"
+                        android:layout_marginBottom="4dp" />
 
                     <TextView
+                        android:id="@+id/profileXp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1,250"
-                        android:textSize="24sp"
+                        android:text="0"
+                        android:textSize="20sp"
                         android:textColor="@color/orange_primary"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_bold" />
@@ -97,9 +127,7 @@
                         android:textSize="12sp"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/poppins_regular" />
-
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Streak -->
@@ -107,7 +135,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp"
                 app:cardBackgroundColor="@color/white">
@@ -117,13 +145,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="16dp">
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_fire"
+                        android:tint="@color/orange_primary"
+                        android:layout_marginBottom="4dp" />
 
                     <TextView
+                        android:id="@+id/profileStreak"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7"
-                        android:textSize="24sp"
+                        android:text="0"
+                        android:textSize="20sp"
                         android:textColor="@color/orange_primary"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_bold" />
@@ -131,15 +167,55 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Day Streak"
+                        android:text="Streak"
                         android:textSize="12sp"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/poppins_regular" />
-
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Lesson Selesai -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_school"
+                        android:tint="@color/orange_primary"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/profileLesson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textColor="@color/orange_primary"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lesson Selesai"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:fontFamily="@font/poppins_regular" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
         <!-- Menu Items -->
@@ -155,6 +231,7 @@
 
         <!-- Language Settings -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profileLanguageCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
@@ -172,6 +249,7 @@
                 android:padding="16dp">
 
                 <ImageView
+                    android:id="@+id/profileLanguageIcon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_java"
@@ -187,6 +265,7 @@
                     android:fontFamily="@font/poppins_medium" />
 
                 <TextView
+                    android:id="@+id/profileLanguage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Java"
@@ -238,18 +317,19 @@
                     android:textColor="@color/text_primary"
                     android:fontFamily="@font/poppins_medium" />
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_email"
-                    android:tint="@color/text_secondary" />
-
+                <Switch
+                    android:id="@+id/profileNotificationSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:thumbTint="@color/orange_primary"
+                    android:trackTint="@color/orange_light" />
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
         <!-- About -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profileAboutCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
@@ -281,18 +361,21 @@
                     android:textColor="@color/text_primary"
                     android:fontFamily="@font/poppins_medium" />
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_email"
-                    android:tint="@color/text_secondary" />
-
+                <TextView
+                    android:id="@+id/profileVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="v1.0.0"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginEnd="8dp" />
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Logout -->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profileLogoutCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
@@ -324,15 +407,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/red"
                     android:fontFamily="@font/poppins_medium" />
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_email"
-                    android:tint="@color/red" />
-
             </LinearLayout>
-
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>

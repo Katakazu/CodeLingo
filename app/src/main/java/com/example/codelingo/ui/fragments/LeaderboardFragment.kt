@@ -34,7 +34,7 @@ class LeaderboardFragment : Fragment() {
     private fun showLeaderboard(view: View) {
         // Hardcode user list (nama, XP)
         val prefs = UserPreferences(requireContext())
-        val currentUserName = "Admin User" // Ganti sesuai user login jika ada
+        val currentUserName = prefs.getUsername()
         val currentUserXp = prefs.getTotalXp()
         val users = mutableListOf(
             User("Alex", 3200),

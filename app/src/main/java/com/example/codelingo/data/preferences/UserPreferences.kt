@@ -21,6 +21,9 @@ class UserPreferences(context: Context) {
         private val KEY_CLAIMED_QUESTS = "claimed_quests"
         private val KEY_LESSON_TODAY = "lesson_today"
         private val KEY_LESSON_TODAY_DATE = "lesson_today_date"
+        private val KEY_USERNAME = "username"
+        private val KEY_SELECTED_LANGUAGE = "selected_language"
+        private val KEY_NOTIFICATION_ENABLED = "notification_enabled"
     }
 
     init {
@@ -174,5 +177,29 @@ class UserPreferences(context: Context) {
     }
     fun resetLessonsCompletedToday() {
         sharedPreferences.edit().putInt(KEY_LESSON_TODAY, 0).putString(KEY_LESSON_TODAY_DATE, getTodayString()).apply()
+    }
+
+    // Username
+    fun getUsername(): String {
+        return sharedPreferences.getString(KEY_USERNAME, "User") ?: "User"
+    }
+    fun setUsername(username: String) {
+        sharedPreferences.edit().putString(KEY_USERNAME, username).apply()
+    }
+
+    // Selected Language
+    fun getSelectedLanguage(): String {
+        return sharedPreferences.getString(KEY_SELECTED_LANGUAGE, "Java") ?: "Java"
+    }
+    fun setSelectedLanguage(language: String) {
+        sharedPreferences.edit().putString(KEY_SELECTED_LANGUAGE, language).apply()
+    }
+
+    // Notification Settings
+    fun isNotificationEnabled(): Boolean {
+        return sharedPreferences.getBoolean(KEY_NOTIFICATION_ENABLED, true)
+    }
+    fun setNotificationEnabled(enabled: Boolean) {
+        sharedPreferences.edit().putBoolean(KEY_NOTIFICATION_ENABLED, enabled).apply()
     }
 }
