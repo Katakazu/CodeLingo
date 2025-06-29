@@ -25,15 +25,16 @@
             android:id="@+id/ivLanguageIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_java" />
 
         <TextView
             android:id="@+id/tvLanguageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Java"
             android:textSize="16sp"
-            android:textColor="@color/text_primary"
-            android:textStyle="bold"
+            android:textColor="@color/black"
             android:fontFamily="@font/poppins_medium" />
 
     </LinearLayout>
