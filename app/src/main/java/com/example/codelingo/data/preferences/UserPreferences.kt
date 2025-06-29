@@ -14,6 +14,7 @@ class UserPreferences(context: Context) {
         private const val KEY_XP = "user_xp"
         private const val KEY_DAYS = "user_days"
         private const val KEY_LAST_LEARN_DATE = "last_learn_date"
+        private const val KEY_CURRENT_LESSON = "current_lesson"
     }
 
     fun setUserLoggedIn(isLoggedIn: Boolean) {
@@ -57,5 +58,12 @@ class UserPreferences(context: Context) {
     }
     fun getLastLearnDate(): String? {
         return sharedPreferences.getString(KEY_LAST_LEARN_DATE, null)
+    }
+
+    fun setCurrentLesson(lesson: Int) {
+        sharedPreferences.edit().putInt(KEY_CURRENT_LESSON, lesson).apply()
+    }
+    fun getCurrentLesson(): Int {
+        return sharedPreferences.getInt(KEY_CURRENT_LESSON, 1)
     }
 }
