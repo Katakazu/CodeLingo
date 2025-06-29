@@ -12,21 +12,23 @@
         android:padding="16dp">
 
         <!-- Profile Header -->
+
+        <!-- Stats Cards -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginBottom="24dp"
+            android:background="@color/orange_primary"
             android:gravity="center"
-            android:background="@drawable/circle_background"
-            android:padding="32dp"
-            android:layout_marginBottom="24dp">
+            android:orientation="vertical"
+            android:padding="32dp">
 
             <LinearLayout
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:layout_marginBottom="16dp"
                 android:background="@color/white"
-                android:gravity="center"
-                android:layout_marginBottom="16dp">
+                android:gravity="center">
 
                 <ImageView
                     android:layout_width="48dp"
@@ -39,24 +41,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Admin User"
-                android:textSize="24sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/poppins_bold"
-                android:layout_marginBottom="8dp" />
+                android:text="Admin User"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Level 5 • Java Developer"
-                android:textSize="16sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/poppins_medium" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
-        <!-- Stats Cards -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
