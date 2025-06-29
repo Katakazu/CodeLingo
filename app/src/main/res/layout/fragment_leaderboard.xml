@@ -15,125 +15,113 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="24dp"
+            android:baselineAligned="false"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🏆 Leaderboard"
-                android:textSize="24sp"
-                android:textColor="@color/text_primary"
-                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/poppins_bold"
-                android:layout_marginBottom="8dp" />
+                android:text="🏆 Leaderboard"
+                android:textColor="@color/text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lihat peringkat teratas minggu ini"
-                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Lihat peringkat teratas dan peringkat Anda!"
                 android:textColor="@color/text_secondary"
-                android:fontFamily="@font/poppins_regular" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
-        <!-- Top 3 Podium -->
+        <!-- Top 3 Podium Modern -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="bottom"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <!-- 2nd Place -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginEnd="8dp">
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/circle_background"
-                    android:gravity="center"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🥈"
-                        android:textSize="32sp" />
-
-                </LinearLayout>
-
+                <ImageView
+                    android:id="@+id/top2Medal"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:src="@drawable/ic_silver_medal"
+                    android:contentDescription="medal podium 2"
+                    android:layout_gravity="center" />
                 <TextView
+                    android:id="@+id/top2Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sarah"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:layout_marginBottom="4dp" />
-
+                    android:text="-"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:maxWidth="90dp" />
                 <TextView
+                    android:id="@+id/top2Xp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2,450 XP"
-                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="-"
                     android:textColor="@color/text_secondary"
-                    android:fontFamily="@font/poppins_regular" />
-
+                    android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- 1st Place -->
+            <!-- 1st Place (center, higher) -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/circle_background"
-                    android:gravity="center"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="👑"
-                        android:textSize="40sp" />
-
-                </LinearLayout>
-
+                <ImageView
+                    android:id="@+id/top1Medal"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/ic_gold_medal"
+                    android:contentDescription="medal podium 1"
+                    android:layout_gravity="center" />
                 <TextView
+                    android:id="@+id/top1Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Alex"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/poppins_bold"
-                    android:layout_marginBottom="4dp" />
-
+                    android:text="-"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:maxWidth="110dp" />
                 <TextView
+                    android:id="@+id/top1Xp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3,200 XP"
-                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="-"
                     android:textColor="@color/orange_primary"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/poppins_medium" />
-
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- 3rd Place -->
@@ -141,73 +129,66 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginStart="8dp">
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/circle_background"
-                    android:gravity="center"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🥉"
-                        android:textSize="32sp" />
-
-                </LinearLayout>
-
+                <ImageView
+                    android:id="@+id/top3Medal"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:src="@drawable/ic_bronze_medal"
+                    android:contentDescription="medal podium 3"
+                    android:layout_gravity="center" />
                 <TextView
+                    android:id="@+id/top3Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mike"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
+                    android:layout_marginTop="6dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:layout_marginBottom="4dp" />
-
+                    android:text="-"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:maxWidth="90dp" />
                 <TextView
+                    android:id="@+id/top3Xp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1,890 XP"
-                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="-"
                     android:textColor="@color/text_secondary"
-                    android:fontFamily="@font/poppins_regular" />
-
+                    android:textSize="14sp" />
             </LinearLayout>
-
         </LinearLayout>
 
         <!-- Other Rankings -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Peringkat Lainnya"
-            android:textSize="18sp"
-            android:textColor="@color/text_primary"
-            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins_bold"
-            android:layout_marginBottom="16dp" />
+            android:text="Peringkat Lainnya"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <!-- Ranking List -->
         <LinearLayout
             android:id="@+id/rankingListContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical" />
 
         <!-- User Rank (jika tidak masuk top 10) -->
         <LinearLayout
             android:id="@+id/userRankContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" />
 
     </LinearLayout>
 </ScrollView> 

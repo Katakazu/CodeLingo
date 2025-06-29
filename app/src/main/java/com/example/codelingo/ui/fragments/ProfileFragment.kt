@@ -35,7 +35,22 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userPreferences = UserPreferences(requireContext())
-        authViewModel = AuthViewModel(requireActivity().application)
+        authViewModel = androidx.lifecycle.ViewModelProvider(this)[AuthViewModel::class.java]
+        authViewModel.setUserPreferences(com.example.codelingo.data.preferences.UserPreferences(requireContext()))
+        
+        // Observe currentUser dari AuthViewModel
+        authViewModel.currentUser.observe(viewLifecycleOwner) { appUser ->
+            if (appUser != null) {
+                userPreferences.setUsername(appUser.username)
+                userPreferences.setUserLevel(appUser.level)
+                userPreferences.setUserXp(appUser.experience)
+                userPreferences.setUserDays(appUser.streak)
+                userPreferences.setTotalXp(appUser.totalScore)
+                userPreferences.setSelectedLanguage(appUser.selectedLanguage)
+                userPreferences.setCurrentLesson(appUser.currentLesson)
+                setupProfileData(view)
+            }
+        }
         
         setupProfileData(view)
         setupClickListeners(view)
@@ -160,8 +175,11 @@ class ProfileFragment : Fragment() {
             .setPositiveButton("Simpan") { _, _ ->
                 val newName = nameEditText.text.toString().trim()
                 if (newName.isNotEmpty()) {
-                    userPreferences.setUsername(newName)
+                    // Update ke Firebase dan local preferences
+                    authViewModel.updateUserUsername(newName)
+                    // Update UI langsung
                     view?.findViewById<TextView>(R.id.profileName)?.text = newName
+                    view?.findViewById<TextView>(R.id.profileSubtext)?.text = "Level ${userPreferences.getUserLevel()} • ${userPreferences.getSelectedLanguage()}"
                 }
             }
             .setNegativeButton("Batal", null)

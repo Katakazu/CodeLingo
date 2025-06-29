@@ -11,12 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.codelingo.R
 import com.example.codelingo.data.preferences.UserPreferences
-import java.text.NumberFormat
-import java.util.Locale
+import com.example.codelingo.viewmodel.LeaderboardViewModel
+import com.example.codelingo.data.model.AppUser
+import androidx.lifecycle.ViewModelProvider
 
 class LeaderboardFragment : Fragment() {
 
-    data class User(val name: String, val xp: Int)
+    private lateinit var leaderboardViewModel: LeaderboardViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,38 +29,38 @@ class LeaderboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showLeaderboard(view)
+        // Set placeholder to avoid showing hardcoded names
+        view.findViewById<TextView>(R.id.top1Name)?.text = "-"
+        view.findViewById<TextView>(R.id.top1Xp)?.text = "-"
+        view.findViewById<TextView>(R.id.top2Name)?.text = "-"
+        view.findViewById<TextView>(R.id.top2Xp)?.text = "-"
+        view.findViewById<TextView>(R.id.top3Name)?.text = "-"
+        view.findViewById<TextView>(R.id.top3Xp)?.text = "-"
+
+        leaderboardViewModel = ViewModelProvider(this)[LeaderboardViewModel::class.java]
+        leaderboardViewModel.leaderboardData.observe(viewLifecycleOwner) { users ->
+            showLeaderboard(view, users)
+            showTop3(view, users)
+        }
+        leaderboardViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            // TODO: tampilkan/hide loading indicator jika perlu
+        }
+        leaderboardViewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+            if (errorMsg != null) {
+                // TODO: tampilkan error ke user jika perlu
+            }
+        }
     }
 
-    private fun showLeaderboard(view: View) {
-        // Hardcode user list (nama, XP)
+    private fun showLeaderboard(view: View, users: List<AppUser>) {
         val prefs = UserPreferences(requireContext())
-        val currentUserName = prefs.getUsername()
-        val currentUserXp = prefs.getTotalXp()
-        val users = mutableListOf(
-            User("Alex", 3200),
-            User("Sarah", 2450),
-            User("Mike", 1890),
-            User("Emma", 1650),
-            User("David", 1420),
-            User("Lisa", 1200),
-            User("John", 1100),
-            User("Anna", 950),
-            User("Tom", 800),
-            User("Nina", 700),
-            User("Kevin", 600)
-        )
-        // Pastikan user login hanya satu kali di list
-        users.removeAll { it.name == currentUserName }
-        users.add(User(currentUserName, currentUserXp))
-        // Urutkan dan ranking
-        val sorted = users.sortedByDescending { it.xp }
+        val currentUserUid = prefs.getCurrentUserId()
+        val sorted = users.sortedByDescending { it.totalScore }
         val top10 = sorted.take(10)
-        val userRank = sorted.indexOfFirst { it.name == currentUserName } + 1
-        val userInTop10 = userRank in 1..10
+        val userIndex = sorted.indexOfFirst { it.uid == currentUserUid }
+        val userInTop10 = userIndex in 0..9
 
-        val numberFormat = NumberFormat.getInstance(Locale.US)
-        // Tampilkan top 10 di layout (mulai dari rank 4 ke bawah, karena 1-3 sudah di layout XML)
+        val numberFormat = java.text.NumberFormat.getInstance(java.util.Locale.US)
         val rankingList = view.findViewById<LinearLayout>(R.id.rankingListContainer)
         rankingList?.removeAllViews()
         for (i in 3 until top10.size) {
@@ -68,36 +69,81 @@ class LeaderboardFragment : Fragment() {
             val rankText = row.findViewById<TextView>(R.id.rankText)
             val nameText = row.findViewById<TextView>(R.id.nameText)
             val xpText = row.findViewById<TextView>(R.id.xpText)
+            val avatarText = row.findViewById<TextView>(R.id.avatarText)
             rankText.text = (i + 1).toString()
-            nameText.text = user.name
-            xpText.text = "${numberFormat.format(user.xp)} XP"
-            // Emoji medali untuk ranking 1-3
+            nameText.text = user.username
+            xpText.text = "${numberFormat.format(user.totalScore)} XP"
+            avatarText.text = getInitials(user.username)
             when (i + 1) {
                 1 -> rankText.text = "🥇"
                 2 -> rankText.text = "🥈"
                 3 -> rankText.text = "🥉"
             }
-            // Highlight user login
-            if (user.name == currentUserName) {
+            if (user.uid == currentUserUid) {
                 (row as com.google.android.material.card.MaterialCardView).setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.orange_light))
                 nameText.setTypeface(null, Typeface.BOLD)
             }
             rankingList.addView(row)
         }
-        // Jika user login tidak masuk top 10, tampilkan di bawah
         val userRowContainer = view.findViewById<LinearLayout>(R.id.userRankContainer)
         userRowContainer?.removeAllViews()
-        if (!userInTop10) {
+        if (!userInTop10 && userIndex != -1) {
+            val user = sorted[userIndex]
             val userRow = layoutInflater.inflate(R.layout.item_leaderboard_row, userRowContainer, false)
             val rankText = userRow.findViewById<TextView>(R.id.rankText)
             val nameText = userRow.findViewById<TextView>(R.id.nameText)
             val xpText = userRow.findViewById<TextView>(R.id.xpText)
-            rankText.text = userRank.toString()
-            nameText.text = currentUserName
-            xpText.text = "${numberFormat.format(currentUserXp)} XP"
+            val avatarText = userRow.findViewById<TextView>(R.id.avatarText)
+            rankText.text = (userIndex + 1).toString()
+            nameText.text = user.username
+            xpText.text = "${numberFormat.format(user.totalScore)} XP"
+            avatarText.text = getInitials(user.username)
             (userRow as com.google.android.material.card.MaterialCardView).setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.orange_light))
             nameText.setTypeface(null, Typeface.BOLD)
             userRowContainer.addView(userRow)
         }
+    }
+
+    private fun showTop3(view: View, users: List<AppUser>) {
+        val sorted = users.sortedByDescending { it.totalScore }
+        val top3 = sorted.take(3)
+        // 1st place
+        val firstName = view.findViewById<TextView>(R.id.top1Name)
+        val firstXp = view.findViewById<TextView>(R.id.top1Xp)
+        if (top3.size > 0) {
+            firstName.text = top3[0].username
+            firstXp.text = "${top3[0].totalScore} XP"
+        } else {
+            firstName.text = "-"
+            firstXp.text = "-"
+        }
+        // 2nd place
+        val secondName = view.findViewById<TextView>(R.id.top2Name)
+        val secondXp = view.findViewById<TextView>(R.id.top2Xp)
+        if (top3.size > 1) {
+            secondName.text = top3[1].username
+            secondXp.text = "${top3[1].totalScore} XP"
+        } else {
+            secondName.text = "-"
+            secondXp.text = "-"
+        }
+        // 3rd place
+        val thirdName = view.findViewById<TextView>(R.id.top3Name)
+        val thirdXp = view.findViewById<TextView>(R.id.top3Xp)
+        if (top3.size > 2) {
+            thirdName.text = top3[2].username
+            thirdXp.text = "${top3[2].totalScore} XP"
+        } else {
+            thirdName.text = "-"
+            thirdXp.text = "-"
+        }
+    }
+
+    // Helper to get initials from username
+    private fun getInitials(name: String?): String {
+        if (name.isNullOrBlank()) return "-"
+        val parts = name.trim().split(" ")
+        return if (parts.size >= 2) (parts[0].firstOrNull()?.toString() ?: "") + (parts[1].firstOrNull()?.toString() ?: "")
+        else name.take(2).uppercase()
     }
 } 

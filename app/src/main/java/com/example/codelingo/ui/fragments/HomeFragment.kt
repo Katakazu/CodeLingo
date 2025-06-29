@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val totalLesson = 3 // Ganti sesuai jumlah lesson yang tersedia
+        val totalLesson = 10 // Ganti sesuai jumlah lesson yang tersedia
         showUserStats(view, totalLesson)
         showLessonList(view, totalLesson)
         setupClickListeners(view, totalLesson)

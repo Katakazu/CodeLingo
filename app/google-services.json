@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "718529378470",
+    "project_id": "codelingo-ef2a9",
+    "storage_bucket": "codelingo-ef2a9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718529378470:android:8e0f39185a34d54f559c67",
+        "android_client_info": {
+          "package_name": "com.example.codelingo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJx0feXuLf4_UeLFH0c7PajIHyyQhAQNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

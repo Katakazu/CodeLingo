@@ -12,10 +12,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.codelingo.R
 import com.example.codelingo.data.preferences.UserPreferences
+import com.example.codelingo.viewmodel.AuthViewModel
 import com.google.android.material.card.MaterialCardView
 
 class QuestFragment : Fragment() {
@@ -26,6 +28,7 @@ class QuestFragment : Fragment() {
     private lateinit var textDailyProgress: TextView
     private lateinit var textDailyPercent: TextView
     private lateinit var progressBar: android.widget.ProgressBar
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,7 @@ class QuestFragment : Fragment() {
         textDailyPercent = view.findViewById(R.id.textDailyPercent)
         progressBar = view.findViewById(R.id.progressBarDaily)
         userPreferences = UserPreferences(requireContext())
+        authViewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
         setupQuests()
         questAdapter = QuestAdapter(quests, userPreferences) { position ->
             claimQuest(position)
@@ -97,6 +101,12 @@ class QuestFragment : Fragment() {
             userPreferences.addXp(quest.rewardXp)
             userPreferences.addClaimedQuest(quest.id)
             questAdapter.notifyItemChanged(position)
+            // Update progress ke Firestore
+            authViewModel.updateUserProgress(
+                experience = userPreferences.getUserXp(),
+                level = userPreferences.getUserLevel(),
+                totalScore = userPreferences.getTotalXp()
+            )
         }
     }
 

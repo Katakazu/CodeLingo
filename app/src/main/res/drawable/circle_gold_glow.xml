@@ -1,0 +1,23 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FFF7C2" />
+            <size android:width="90dp" android:height="90dp" />
+        </shape>
+    </item>
+    <item android:top="-8dp" android:bottom="-8dp" android:left="-8dp" android:right="-8dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFE0" />
+            <size android:width="106dp" android:height="106dp" />
+            <gradient android:type="radial" android:gradientRadius="60dp" android:startColor="#FFFFE0" android:endColor="#00FFFFFF" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FFD700" />
+        </shape>
+    </item>
+    <item android:top="8dp" android:left="28dp" android:right="28dp" android:height="32dp">
+        <bitmap android:src="@drawable/ic_gold_medal" android:gravity="top|center_horizontal" />
+    </item>
+</layer-list> 

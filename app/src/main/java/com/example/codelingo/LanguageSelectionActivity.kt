@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.codelingo.viewmodel.AuthViewModel
 import com.google.android.material.card.MaterialCardView
 
 class LanguageSelectionActivity : AppCompatActivity() {
@@ -16,6 +18,7 @@ class LanguageSelectionActivity : AppCompatActivity() {
     private lateinit var cardKotlin: MaterialCardView
     private lateinit var cardPHP: MaterialCardView
     private lateinit var btnContinue: Button
+    private lateinit var authViewModel: AuthViewModel
 
     private var selectedLanguage: String? = null
     private var selectedCard: MaterialCardView? = null
@@ -24,6 +27,9 @@ class LanguageSelectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_language_selection)
 
+        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        authViewModel.setUserPreferences(com.example.codelingo.data.preferences.UserPreferences(this))
+        
         initViews()
         setupClickListeners()
     }
@@ -93,6 +99,9 @@ class LanguageSelectionActivity : AppCompatActivity() {
 
     private fun proceedToNextScreen() {
         selectedLanguage?.let { language ->
+            // Save language selection to Firebase
+            authViewModel.updateUserLanguage(language)
+            
             // Pass selected language to next activity
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("SELECTED_LANGUAGE", language)

@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.codelingo" />
+                  <option name="mobileSdkAppId" value="1:718529378470:android:8e0f39185a34d54f559c67" />
+                  <option name="projectId" value="codelingo-ef2a9" />
+                  <option name="projectNumber" value="718529378470" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

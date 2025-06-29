@@ -2,14 +2,18 @@ package com.example.codelingo
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.codelingo.databinding.ActivityLoginBinding
 import com.example.codelingo.data.preferences.UserPreferences
+import com.example.codelingo.viewmodel.AuthViewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,25 +26,37 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Tombol Masuk ditekan
-        binding.btnMasuk.setOnClickListener {
-            val username = binding.etUsername.text.toString().trim()
-            val password = binding.etPassword.text.toString().trim()
+        authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        authViewModel.setUserPreferences(prefs)
 
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Username dan password tidak boleh kosong", Toast.LENGTH_SHORT).show()
-            } else {
-                // Sementara hanya cek input, belum pakai autentikasi
-                if (username == "admin" && password == "admin") {
+        // Observe login result
+        authViewModel.loginResult.observe(this) { result ->
+            when (result) {
+                is AuthViewModel.AuthResult.Loading -> {
+                    binding.progressBar.visibility = if (result.isLoading) View.VISIBLE else View.GONE
+                    binding.btnMasuk.isEnabled = !result.isLoading
+                }
+                is AuthViewModel.AuthResult.Success -> {
                     Toast.makeText(this, "Login berhasil", Toast.LENGTH_SHORT).show()
-                    prefs.setUserLoggedIn(true)
                     val intent = Intent(this, LanguageSelectionActivity::class.java)
                     startActivity(intent)
                     finish()
-
-                } else {
-                    Toast.makeText(this, "Username atau password salah", Toast.LENGTH_SHORT).show()
                 }
+                is AuthViewModel.AuthResult.Error -> {
+                    Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        // Tombol Masuk ditekan
+        binding.btnMasuk.setOnClickListener {
+            val usernameOrEmail = binding.etUsername.text.toString().trim()
+            val password = binding.etPassword.text.toString().trim()
+
+            if (usernameOrEmail.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Username/email dan password tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            } else {
+                authViewModel.loginUser(usernameOrEmail, password)
             }
         }
 

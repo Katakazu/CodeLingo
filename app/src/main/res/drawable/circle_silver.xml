@@ -1,0 +1,10 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#C0C0C0" />
+        </shape>
+    </item>
+    <item android:top="8dp" android:left="20dp" android:right="20dp" android:height="32dp">
+        <bitmap android:src="@drawable/ic_silver_medal" android:gravity="top|center_horizontal" />
+    </item>
+</layer-list> 

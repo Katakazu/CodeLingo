@@ -51,12 +51,12 @@ class UserPreferences(context: Context) {
         return sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)
     }
 
-    fun setCurrentUserId(userId: Int) {
-        sharedPreferences.edit().putInt(KEY_CURRENT_USER_ID, userId).apply()
+    fun setCurrentUserId(userId: String) {
+        sharedPreferences.edit().putString(KEY_CURRENT_USER_ID, userId).apply()
     }
 
-    fun getCurrentUserId(): Int {
-        return sharedPreferences.getInt(KEY_CURRENT_USER_ID, -1)
+    fun getCurrentUserId(): String {
+        return sharedPreferences.getString(KEY_CURRENT_USER_ID, "") ?: ""
     }
 
     // Statistik User
