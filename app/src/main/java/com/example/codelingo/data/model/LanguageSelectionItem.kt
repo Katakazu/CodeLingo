@@ -13,21 +13,6 @@ data class ProgrammingLanguage(
     var isSelected: Boolean = false
 ) : Serializable
 
-@Entity(tableName = "users")
-data class User(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val username: String,
-    val email: String = "",
-    val password: String = "",
-    var level: Int = 1,
-    var experience: Int = 0,
-    var streak: Int = 0,
-    var gems: Int = 0,
-    val createdAt: Long = System.currentTimeMillis(),
-    var isFirstTime: Boolean = true
-) : Serializable
-
 @Entity(tableName = "lessons")
 data class Lesson(
     @PrimaryKey(autoGenerate = true)

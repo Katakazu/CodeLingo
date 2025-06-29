@@ -1,4 +1,4 @@
-package com.example.codelingo.ui.adapter
+package com.example.codelingo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,10 +8,10 @@ import com.example.codelingo.R
 import com.example.codelingo.databinding.ItemLanguageBinding
 import com.example.codelingo.data.model.ProgrammingLanguage
 
-class LanguageAdapter(
+class LanguageSelectionAdapter(
     private val languages: List<ProgrammingLanguage>,
     private val onLanguageClick: (ProgrammingLanguage) -> Unit
-) : RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
+) : RecyclerView.Adapter<LanguageSelectionAdapter.LanguageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
         val binding = ItemLanguageBinding.inflate(
