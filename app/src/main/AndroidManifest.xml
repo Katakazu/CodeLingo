@@ -33,11 +33,8 @@
             android:name=".LanguageSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".LeaderboardActivity"
-            android:exported="false"/>
 
     </application>
 

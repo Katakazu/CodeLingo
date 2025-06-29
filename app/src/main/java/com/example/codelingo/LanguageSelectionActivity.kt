@@ -3,8 +3,8 @@ package com.example.codelingo
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.codelingo.R
 import com.google.android.material.card.MaterialCardView
 
 class LanguageSelectionActivity : AppCompatActivity() {
@@ -40,11 +40,21 @@ class LanguageSelectionActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         cardJava.setOnClickListener { selectLanguage("Java", cardJava) }
-        cardPython.setOnClickListener { selectLanguage("Python", cardPython) }
-        cardC.setOnClickListener { selectLanguage("C", cardC) }
-        cardCSS.setOnClickListener { selectLanguage("CSS", cardCSS) }
-        cardKotlin.setOnClickListener { selectLanguage("Kotlin", cardKotlin) }
-        cardPHP.setOnClickListener { selectLanguage("PHP", cardPHP) }
+        cardPython.setOnClickListener {
+            Toast.makeText(this, "Python not available yet", Toast.LENGTH_SHORT).show()
+        }
+        cardC.setOnClickListener {
+            Toast.makeText(this, "C not available yet", Toast.LENGTH_SHORT).show()
+        }
+        cardCSS.setOnClickListener {
+            Toast.makeText(this, "CSS not available yet", Toast.LENGTH_SHORT).show()
+        }
+        cardKotlin.setOnClickListener {
+            Toast.makeText(this, "Kotlin not available yet", Toast.LENGTH_SHORT).show()
+        }
+        cardPHP.setOnClickListener {
+            Toast.makeText(this, "PHP not available yet", Toast.LENGTH_SHORT).show()
+        }
 
         btnContinue.setOnClickListener {
             proceedToNextScreen()
@@ -89,12 +99,6 @@ class LanguageSelectionActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        // Navigate back to previous screen or close app
-        finish()
     }
 
     // Optional: Save selection to SharedPreferences
