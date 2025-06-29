@@ -1,4 +1,4 @@
-package com.example.codelingo.ui.adapter
+package com.example.codelingo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
